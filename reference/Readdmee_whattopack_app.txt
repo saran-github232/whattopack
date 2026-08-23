@@ -1,0 +1,66 @@
+# WhatToPack
+
+WhatToPack is an Android app that builds a personalized packing checklist for a trip based on destination, dates, travel style, transportation, and real weather forecasts — instead of a generic template.
+
+## Features
+
+- **Smart packing lists** generated from destination, trip dates, travel type, and transportation mode
+- **Real weather integration** — live forecasts for near-term trips and seasonal climate trends for trips further out, via [Open-Meteo](https://open-meteo.com/)
+- **Destination search** with autocomplete (Google Places / Photon)
+- **Every kind of trip** — vacation, honeymoon, business, pilgrimage, trekking, camping, road trip, and more
+- **Group-aware suggestions** — extra items for kids, infants, pets, and senior citizens
+- **Transportation-aware reminders** — e.g. baggage limits when flying, car emergency kit when driving
+- **Checklist management** — check off items, filter by All/Packed/Unpacked, add custom items, edit trip details and regenerate without losing progress
+- **Shared checklists** — invite someone with a code and pack from the same list; either of you ticking an item off updates it on the other's phone, works offline and reconciles on reconnect (see [docs/SHARED_CHECKLISTS.md](docs/SHARED_CHECKLISTS.md))
+- **Categorized items** — Documents, Clothes, Toiletries, Medicines, Electronics, Baby Items, Kids, Pets, Weather Essentials, and more
+- **Weather you can see** — the forecast behind the list is shown on the checklist, with a plain-English line explaining what it means for packing
+- **Reuse a trip** — duplicate a past trip or save one as a template, keeping custom items
+- **Packing widget** — next trip, days to go and how much is left, on the home screen
+- **Checklist shortcuts** — search a long list, tick off a whole category at once, swipe to delete with undo, and a travel-day "don't forget" shortlist
+- **Trip history** — save and revisit past and upcoming trips
+- **Reminder notifications** the day before and morning of a trip, naming what's still unpacked
+- **Light and dark mode**
+
+## Tech stack
+
+- **Kotlin** + **Jetpack Compose** (Material 3)
+- **Hilt** for dependency injection
+- **Room** for local persistence, **DataStore** for preferences/settings
+- **Retrofit + OkHttp** with `kotlinx.serialization` for the weather/geocoding APIs
+- **WorkManager** for scheduled reminder notifications, **Glance** for the home-screen widget
+- **Coil** and **Lottie** for images/animations
+- **Firebase** (Firestore + anonymous auth) for shared checklists — the only feature that leaves the device
+- **AdMob** for ads
+
+## Project structure
+
+```
+app/src/main/java/com/saikalluri/whattopack/
+├── ads/            AdMob integration (banner, native, consent)
+├── data/           Repositories, Room DAOs/entities, DataStore, remote APIs (weather, geocoding), auth, sharing/sync
+├── di/             Hilt modules
+├── domain/         Models and the packing-list generator/weather heuristics
+├── notification/   Trip reminder notifications
+├── presentation/   Compose screens (onboarding, auth, home, create/edit trip, checklist, settings, navigation)
+└── work/           WorkManager workers
+```
+
+## Building
+
+Requirements: JDK 17, Android SDK (compileSdk 36), Gradle (via the included wrapper).
+
+```bash
+./gradlew assembleDebug
+```
+
+Local-only secrets (not committed) go in `local.properties`, e.g.:
+
+```properties
+MAPS_API_KEY=your_google_places_api_key
+```
+
+Auth currently ships as a fully offline, on-device implementation (no server required). See [`docs/FIREBASE_SETUP.md`](docs/FIREBASE_SETUP.md) for swapping it out for real Firebase Authentication and server-side email delivery of packing lists.
+
+## Store listing
+
+Play Store copy lives in [`store-listing/play-store-description.txt`](store-listing/play-store-description.txt).

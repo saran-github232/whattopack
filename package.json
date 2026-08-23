@@ -1,0 +1,13 @@
+{
+  "name": "whattopack-web",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Marketing site for the WhatToPack Android app",
+  "scripts": {
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "dev": "npx serve -l 5173 ."
+  },
+  "devDependencies": {
+    "sharp": "^0.33.0"
+  }
+}
