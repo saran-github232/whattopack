@@ -115,10 +115,11 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="aurora" aria-hidden="true" data-depth="6"><i></i><i></i><i></i><i></i><i></i></div>
     <div class="container">
       <div class="hero-copy" data-reveal>
         <span class="eyebrow">Smart packing, made simple</span>
-        <h1><span class="h1-line">Never Forget</span><span class="h1-line">Anything <span class="text-gradient">Again.</span></span></h1>
+        <h1><span class="h1-line"><span class="line-in">Never Forget</span></span><span class="h1-line"><span class="line-in">Anything <span class="text-gradient">Again.</span></span></span></h1>
         <p class="lead">WhatToPack turns your trip into a personalized packing checklist — built from your destination, dates, real weather, travel style, transportation and who you're traveling with.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary btn-lg btn-magnetic" id="magneticBtn" href="https://play.google.com/store/apps/details?id=com.saikalluri.whattopack" rel="noopener">
@@ -129,7 +130,7 @@
         </div>
         <p class="hero-note"><svg viewBox="0 0 24 24"><use href="#i-check-circle"/></svg> Free to download · Android</p>
       </div>
-      <div class="hero-visual" data-reveal>
+      <div class="hero-visual" data-reveal data-depth="18">
         <picture>
           <source srcset="assets/hero-graphic.webp" type="image/webp">
           <img src="assets/hero-graphic.png" alt="WhatToPack app shown on a phone next to packed suitcases, a passport and a camera, with the tagline Smart Packing Made Simple" width="1600" height="781" loading="eager">
@@ -160,14 +161,14 @@
       </div>
       <div class="packing-flow" data-reveal-group aria-label="How a trip becomes a packing list">
         <div class="flow-item" data-reveal style="--i:0"><small>Start with</small><strong>Your destination</strong></div>
-        <div class="flow-arrow" aria-hidden="true">+</div>
-        <div class="flow-item" data-reveal style="--i:1"><small>Add</small><strong>Dates &amp; weather</strong></div>
-        <div class="flow-arrow" aria-hidden="true">+</div>
-        <div class="flow-item" data-reveal style="--i:2"><small>Tell it</small><strong>Travel style &amp; transport</strong></div>
-        <div class="flow-arrow" aria-hidden="true">+</div>
-        <div class="flow-item" data-reveal style="--i:3"><small>Include</small><strong>Your companions</strong></div>
-        <div class="flow-arrow" aria-hidden="true">=</div>
-        <div class="flow-item" data-reveal style="--i:4"><small>Get</small><strong>A list made for this trip</strong></div>
+        <div class="flow-arrow" aria-hidden="true" data-reveal style="--i:1"><svg><use href="#i-arrow-right"/></svg></div>
+        <div class="flow-item" data-reveal style="--i:2"><small>Add</small><strong>Dates &amp; weather</strong></div>
+        <div class="flow-arrow" aria-hidden="true" data-reveal style="--i:3"><svg><use href="#i-arrow-right"/></svg></div>
+        <div class="flow-item" data-reveal style="--i:4"><small>Tell it</small><strong>Travel style &amp; transport</strong></div>
+        <div class="flow-arrow" aria-hidden="true" data-reveal style="--i:5"><svg><use href="#i-arrow-right"/></svg></div>
+        <div class="flow-item" data-reveal style="--i:6"><small>Include</small><strong>Your companions</strong></div>
+        <div class="flow-arrow" aria-hidden="true" data-reveal style="--i:7"><svg><use href="#i-arrow-right"/></svg></div>
+        <div class="flow-item" data-reveal style="--i:8"><small>Get</small><strong>A list made for this trip</strong></div>
       </div>
     </div>
   </section>
@@ -270,6 +271,8 @@
 
   <!-- EXPLORE -->
   <section class="explore-band" aria-labelledby="explore-title">
+    <div class="sky-stars" aria-hidden="true"></div>
+    <div class="sky-glow" aria-hidden="true"></div>
     <div class="container">
       <div class="explore-heading" data-reveal>
         <span class="eyebrow">Explore WhatToPack</span>
@@ -298,7 +301,8 @@
         </div>
         <div class="feature-callout-media" aria-hidden="true">
           <div class="checklist-card">
-            <header><span>Goa · 4 days</span><span>55% packed</span></header>
+            <header><span class="tw-line"><span class="tw-text">Goa · 4 days</span><span class="tw-caret"></span></span><span>55% packed</span></header>
+            <div class="type-dots" aria-hidden="true"><i></i><i></i><i></i></div>
             <div class="check-row"><i>✓</i> Passport &amp; ID</div>
             <div class="check-row"><i>✓</i> Lightweight clothes</div>
             <div class="check-row pending"><i></i> Sunscreen</div>
@@ -464,7 +468,7 @@
             <circle cx="260" cy="200" r="34" fill="#e6f7ee"/>
             <circle cx="260" cy="188" r="14" fill="#1fa463"/>
             <path d="M236 222c4-16 44-16 48 0" fill="#1fa463"/>
-            <path d="M90 190C130 150 190 150 226 190" stroke="url(#syncGrad)" stroke-width="3" fill="none" stroke-dasharray="6 8"/>
+            <path class="sync-path" d="M90 190C130 150 190 150 226 190" stroke="url(#syncGrad)" stroke-width="3" fill="none" stroke-dasharray="6 8"/>
           </svg>
         </div>
       </div>
@@ -586,7 +590,11 @@
   <section class="section-pad">
     <div class="container">
       <div class="final-cta" data-reveal>
+        <div class="sky-stars" aria-hidden="true"></div>
+        <div class="sky-glow" aria-hidden="true"></div>
+        <div class="cta-ring" aria-hidden="true"><img src="assets/app-icon.webp" alt="" width="54" height="54"></div>
         <h2>Pack smarter. Travel lighter. <span style="color:#8fe3b3;">Worry less.</span></h2>
+        <svg class="swoosh" viewBox="0 0 150 14" aria-hidden="true" focusable="false"><path d="M4 10 C 40 2, 110 2, 146 8"/></svg>
         <p>Create your personalized packing list before your next trip.</p>
         <div class="cta-row">
           <a class="btn btn-primary btn-lg" href="https://play.google.com/store/apps/details?id=com.saikalluri.whattopack" rel="noopener">

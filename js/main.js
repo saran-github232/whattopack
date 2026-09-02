@@ -116,4 +116,62 @@
       magnetic.style.setProperty("--my", "0px");
     });
   }
+
+  // Depth parallax on the hero scene (desktop pointer only)
+  const heroScene = document.querySelector(".hero");
+  if (heroScene && window.matchMedia("(hover: hover) and (pointer: fine)").matches && !reducedMotion) {
+    const layers = heroScene.querySelectorAll("[data-depth]");
+    let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+    heroScene.addEventListener("mousemove", (e) => {
+      const rect = heroScene.getBoundingClientRect();
+      targetX = (e.clientX - rect.left) / rect.width - 0.5;
+      targetY = (e.clientY - rect.top) / rect.height - 0.5;
+    });
+    heroScene.addEventListener("mouseleave", () => {
+      targetX = 0;
+      targetY = 0;
+    });
+    const drift = () => {
+      currentX += (targetX - currentX) * 0.06;
+      currentY += (targetY - currentY) * 0.06;
+      layers.forEach((layer) => {
+        const depth = parseFloat(layer.dataset.depth) || 0;
+        layer.style.transform = `translate3d(${(-currentX * depth).toFixed(2)}px, ${(-currentY * depth).toFixed(2)}px, 0)`;
+      });
+      requestAnimationFrame(drift);
+    };
+    drift();
+  }
+
+  // Typewriter loop on the checklist card destination (starts when scrolled into view)
+  const twLine = document.querySelector(".tw-line");
+  const twText = document.querySelector(".tw-text");
+  if (twLine && twText && !reducedMotion && "IntersectionObserver" in window) {
+    const phrases = ["Goa · 4 days", "Tokyo · 8 days", "Reykjavík · 5 days"];
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    const runTypewriter = async () => {
+      for (let p = 0; ; p++) {
+        const phrase = phrases[p % phrases.length];
+        twLine.classList.add("typing");
+        for (let i = 1; i <= phrase.length; i++) {
+          twText.textContent = phrase.slice(0, i);
+          await sleep(62 * (phrase[i - 1] === " " ? 1.7 : 1) * (0.6 + Math.random() * 0.8));
+        }
+        twLine.classList.remove("typing");
+        await sleep(2100);
+        twLine.classList.add("typing");
+        for (let i = phrase.length - 1; i >= 0; i--) {
+          twText.textContent = phrase.slice(0, i);
+          await sleep(26);
+        }
+      }
+    };
+    const twIo = new IntersectionObserver((entries, obs) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        obs.disconnect();
+        runTypewriter();
+      }
+    }, { threshold: 0.4 });
+    twIo.observe(twLine.closest(".checklist-card"));
+  }
 })();
